@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplicarInimigo : MonoBehaviour
+public class EnemyFactory : MonoBehaviour
 {
     public GameObject boiiiii;
     public Transform enemyPos;
     private float repeatRate = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,6 +14,7 @@ public class MultiplicarInimigo : MonoBehaviour
         {
             InvokeRepeating("EnemySpawner", 0f, repeatRate);
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(collision.gameObject, 1f);
         }
     }
     void EnemySpawner()

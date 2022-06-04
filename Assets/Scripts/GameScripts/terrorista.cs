@@ -9,17 +9,22 @@ public class terrorista : MonoBehaviour
     public Rigidbody2D rb;
     public Rigidbody2D hook;
 
-    public float Seconds = 5f;
-
     public float maxDragDistance = 4f;
     public float releaseTime = .15f;
 
-    public GameObject nextTerrorist;
-
     private bool isPressed = false;
 
+    private void Start()
+    {
+        GetComponent<SpringJoint2D>().enabled = true;
+    }
 
     void Update()
+    {
+        ThrowTerrorist();
+    }
+
+    void ThrowTerrorist()
     {
         if (isPressed)
         {
@@ -33,13 +38,9 @@ public class terrorista : MonoBehaviour
             else
             {
                 rb.position = mousePos;
-                Destroy(gameObject, Seconds);
             }
         }
-
-        
     }
-
   
 
     void OnMouseDown()
@@ -61,11 +62,9 @@ public class terrorista : MonoBehaviour
         yield return new WaitForSeconds(releaseTime);
 
         GetComponent<SpringJoint2D>().enabled = false;
-        this.enabled = false;
 
         yield return new WaitForSeconds(1f);
-        nextTerrorist.SetActive(true);
-     
+        Instantiate(gameObject, hook.position, Quaternion.identity);
     }
 
 }

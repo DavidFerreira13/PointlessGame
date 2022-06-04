@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFactory : MonoBehaviour
+public class MultiplicarInimigo : MonoBehaviour
 {
     public GameObject boiiiii;
     public Transform enemyPos;
